@@ -5,6 +5,7 @@ import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import ErrorModal from '../../shared/components/UIelements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIelements/LoadingSpinner';
+import ImageUpload from '../../shared/components/FormElements/ImageUpload';
 import {
     VALIDATOR_EMAIL,
     VALIDATOR_MINLENGTH,
@@ -72,12 +73,7 @@ const Auth = () => {
                     }
                 );
                 auth.login(responseData.user.id);
-            } catch (err) {
-
-            }
-
-
-
+            } catch (err) { }
         } else {
             try {
                 const responseData = await sendRequest('http://localhost:5000/api/users/signup', 'POST', JSON.stringify({
@@ -114,6 +110,7 @@ const Auth = () => {
                             onInput={inputHandler}
                         />
                     )}
+                    {!isLoginMode && <ImageUpload center id="image" />}
                     <Input
                         element="input"
                         id="email"
