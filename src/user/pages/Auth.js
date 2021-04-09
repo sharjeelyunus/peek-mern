@@ -80,7 +80,7 @@ const Auth = () => {
                         'Content-Type': 'application/json'
                     }
                 );
-                auth.login(responseData.user.id);
+                auth.login(responseData.userId, responseData.token);
             } catch (err) { }
         } else {
             try {
@@ -95,10 +95,11 @@ const Auth = () => {
                     formData
                 );
 
-                auth.login(responseData.user.id);
+                auth.login(responseData.userId, responseData.token);
             } catch (err) { }
         }
     };
+
     return (
         <React.Fragment>
             <ErrorModal error={error} onClear={clearError} />
@@ -123,7 +124,7 @@ const Auth = () => {
                             center
                             id="image"
                             onInput={inputHandler}
-                            errorText="Please Provide an image."
+                            errorText="Please provide an image."
                         />
                     )}
                     <Input
@@ -141,14 +142,16 @@ const Auth = () => {
                         type="password"
                         label="Password"
                         validators={[VALIDATOR_MINLENGTH(6)]}
-                        errorText="Please enter a valid password, at least 6 characters"
+                        errorText="Please enter a valid password, at least 6 characters."
                         onInput={inputHandler}
                     />
                     <Button type="submit" disabled={!formState.isValid}>
                         {isLoginMode ? 'LOGIN' : 'SIGNUP'}
                     </Button>
                 </form>
-                <Button inverse onClick={switchModeHandler}>SWITCH TO {isLoginMode ? 'SIGNUP' : 'LOGIN'}</Button>
+                <Button inverse onClick={switchModeHandler}>
+                    SWITCH TO {isLoginMode ? 'SIGNUP' : 'LOGIN'}
+                </Button>
             </Card>
         </React.Fragment>
     );
