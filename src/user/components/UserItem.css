@@ -21,7 +21,7 @@
 }
 
 .user-item__content {
-  padding: 0;
+  padding: 0 !important;
 }
 
 .user-item__image {

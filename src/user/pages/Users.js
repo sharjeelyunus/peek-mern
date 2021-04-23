@@ -14,7 +14,7 @@ const Users = () => {
         const fetchUsers = async () => {
             try {
                 const responseData = await sendRequest(
-                    process.env.REACT_APP_BACKEND_URL + '/users'
+                    'https://peek-mern.herokuapp.com/api/users'
                 );
 
                 setLoadedUsers(responseData.users);
